@@ -4,4 +4,4 @@ on: workflow_dispatch
 
 jobs:
   call-workflow:
-    uses: tshadz-fiap-postech-soat3/.github/workflow-templates/pipeline-ci.yml@default_branch
+   uses: tshadz-fiap-postech-soat3/ci-pipeline/.github/workflows/ci-pipeline.yml@$default-branch
