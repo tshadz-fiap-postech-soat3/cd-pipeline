@@ -2,6 +2,13 @@ name: test
 
 on: workflow_dispatch
 
+# jobs:
+#   call-workflow:
+#    uses: tshadz-fiap-postech-soat3/ci-pipeline@yaml/.github/workflows/ci-pipeline.yml
 jobs:
-  call-workflow:
-   uses: tshadz-fiap-postech-soat3/ci-pipeline@yaml/.github/workflows/ci-pipeline.yml
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Common Build Steps
+      - uses: tshadz-fiap-postech-soat3/ci-pipeline@yaml/.github/workflows/ci-pipeline.yml
