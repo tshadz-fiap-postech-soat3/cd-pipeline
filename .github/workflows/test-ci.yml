@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Common Build Steps
-      - uses: tshadz-fiap-postech-soat3/ci-pipeline@yaml/.github/workflows/ci-pipeline.yml
+        uses: tshadz-fiap-postech-soat3/ci-pipeline@yaml/.github/workflows/ci-pipeline.yml
