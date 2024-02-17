@@ -3,6 +3,7 @@ name: Build
 on:
   workflow_run:
     workflows: ["ci-pipeline"]
+    branches: [main]
     types:
       - completed
 
