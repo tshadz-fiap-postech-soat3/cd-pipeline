@@ -1,11 +1,12 @@
 name: Build
 
 on:
-  workflow_run:
-    workflows: ["Pipeline Workflow"]
-    branches: [main]
-    types:
-      - completed
+ workflow_call:
+  # workflow_run:
+  #   workflows: ["Pipeline Workflow"]
+  #   branches: [main]
+  #   types:
+  #     - completed
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
