@@ -2,7 +2,7 @@ name: Build
 
 on:
   workflow_run:
-    workflows: ["pipeline-ci"]
+    workflows: ["ci-pipeline"]
     types:
       - completed
 
