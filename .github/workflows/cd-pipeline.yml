@@ -1,4 +1,4 @@
-name: Build
+name: cd-pipeline
 
 on:
  workflow_call:
@@ -9,7 +9,7 @@ on:
   #     - completed
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  PROJECT_ID: ${{ secrets.tshadz-fiap-postech-soat3.GKE_PROJECT }}
   GAR_LOCATION: southamerica-east1
   GKE_CLUSTER: tshadz-cluster-1
   GKE_ZONE: us-central1
@@ -18,7 +18,7 @@ env:
   TAG: ${{ github.sha }}
 
 jobs:
-  setup-build-publish-deploy:
+  setup-build-publish:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: production
@@ -35,7 +35,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
       with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+        credentials_json: '${{ secrets.tshadz-fiap-postech-soat3.GCP_CREDENTIALS }}'
         token_format: 'access_token'
 
  # Authenticate Docker to Google Cloud Artifact Registry
