@@ -2,11 +2,6 @@ name: cd-pipeline
 
 on:
  workflow_call:
-  # workflow_run:
-  #   workflows: ["Pipeline Workflow"]
-  #   branches: [main]
-  #   types:
-  #     - completed
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -14,7 +9,7 @@ env:
   GKE_CLUSTER: tshadz-cluster-1
   GKE_ZONE: us-central1
   REPOSITORY: fiap
-  IMAGE: static-site
+  IMAGE: ${{ secrets.IMAGE_NAME }}
   TAG: ${{ github.sha }}
 
 jobs:
