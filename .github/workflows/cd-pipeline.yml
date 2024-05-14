@@ -65,11 +65,6 @@ jobs:
 
   # Deploy with Terraform
   deploy:
-    name: Deploy top GCP
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Terraform Plan
-        uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
-        with:
-          trigger_workflow: true
+    uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
+    with:
+      trigger_workflow: true
