@@ -64,7 +64,16 @@ jobs:
         docker push "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:${{env.TAG}}"
 
   # Deploy with Terraform
+  plan:
+    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
+    needs: setup-build-publish
+    uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
+    with:
+      trigger_workflow: true
+    secrets: inherit
+
   deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event.pull_request.merged == true
     needs: setup-build-publish
     uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
     with:
