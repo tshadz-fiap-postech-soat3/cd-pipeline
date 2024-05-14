@@ -69,3 +69,4 @@ jobs:
     uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
     with:
       trigger_workflow: true
+    secrets: inherit
