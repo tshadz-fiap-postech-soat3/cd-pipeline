@@ -65,5 +65,5 @@ jobs:
 
   # Deploy with Terraform
   deploy:
-    uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/deploy.yml@dev-fiap-001
+    uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
     secrets: inherit
