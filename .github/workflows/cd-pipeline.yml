@@ -73,8 +73,10 @@ jobs:
     secrets: inherit
 
   deploy:
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event.pull_request.merged == true
-    needs: setup-build-publish
+    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
+    needs: 
+      - setup-build-publish
+      - plan
     uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@dev-fiap-001
     with:
       trigger_workflow: true
