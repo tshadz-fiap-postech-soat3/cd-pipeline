@@ -2,6 +2,11 @@ name: cd-pipeline
 
 on:
   workflow_call:
+    inputs:
+      pr_number:
+        description: 'Pull Request Number'
+        required: true
+        type: string
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -74,7 +79,7 @@ jobs:
 
   # Deploy database
   deploy-db:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
     needs: 
       - setup-build-publish
       - plan
@@ -85,7 +90,7 @@ jobs:
 
   # Deploy with Terraform
   deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
     needs: 
       - setup-build-publish
       - plan
