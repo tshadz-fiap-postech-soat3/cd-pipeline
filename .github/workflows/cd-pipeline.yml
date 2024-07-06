@@ -63,7 +63,7 @@ jobs:
       run: |-
         docker push "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:${{env.TAG}}"
 
-  # Deploy with Terraform
+  # Plan with Terraform
   plan:
     if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
     needs: setup-build-publish
@@ -72,8 +72,20 @@ jobs:
       trigger_workflow: true
     secrets: inherit
 
+  # Deploy database
+  deploy-db:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    needs: 
+      - setup-build-publish
+      - plan
+    uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-apply-pipeline-ci.yml@main
+    with:
+      trigger_workflow: true
+    secrets: inherit
+
+  # Deploy with Terraform
   deploy:
-    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     needs: 
       - setup-build-publish
       - plan
