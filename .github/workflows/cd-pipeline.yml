@@ -54,14 +54,14 @@ jobs:
       run: |-
         echo $GITHUB_SHA
         docker build \
-          --tag "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:${{env.TAG}}" \
+          --tag "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE_NAME}}:${{env.TAG}}" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
           .
     # Push the Docker image to Google Artifact Registry
     - name: Publish
       run: |-
-        docker push "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:${{env.TAG}}"
+        docker push "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE_NAME}}:${{env.TAG}}"
 
   # Plan with Terraform
   plan:
