@@ -68,8 +68,6 @@ jobs:
     if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
     needs: setup-build-publish
     uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@main
-    with:
-      trigger_workflow: true
     secrets: inherit
 
   # Deploy with Terraform
@@ -79,6 +77,4 @@ jobs:
       - setup-build-publish
       - plan
     uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-apply-pipeline-ci.yml@main
-    with:
-      trigger_workflow: true
     secrets: inherit
