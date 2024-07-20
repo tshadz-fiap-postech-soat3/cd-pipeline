@@ -9,7 +9,7 @@ env:
   GKE_CLUSTER: tshadz-cluster-1
   GKE_ZONE: us-central1
   REPOSITORY: fiap
-  IMAGE: ${{ secrets.IMAGE_NAME }}
+  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
   TAG: ${{ github.sha }}
 
 jobs:
