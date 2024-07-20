@@ -65,14 +65,14 @@ jobs:
 
   # Plan with Terraform
   plan:
-    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
+    if: ${{ (github.event_name == 'push') || github.event_name == 'pull_request' }}
     needs: setup-build-publish
     uses: tshadz-fiap-postech-soat3/terraform-cloud-infra/.github/workflows/terraform-plan-pipeline-ci.yml@main
     secrets: inherit
 
   # Deploy with Terraform
   deploy:
-    if: ${{ (github.event_name == 'push' && github.head_ref) || github.event_name == 'pull_request' }}
+    if: ${{ (github.event_name == 'push') || github.event_name == 'pull_request' }}
     needs: 
       - setup-build-publish
       - plan
